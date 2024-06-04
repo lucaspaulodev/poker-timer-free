@@ -4,7 +4,7 @@ import IconButton from "./IconButton";
 import { cn } from "../../lib/cn";
 import { ChangeEvent } from "react";
 
-const CounterField = ({ label, value, onChange, ...props }: FieldProps) => {
+const CounterField = ({ label, value, onChange = () => {}, ...props }: FieldProps) => {
   const handleIncrement = () => {
     onChange({ target: { value: (Number(value) + 1).toString() } } as ChangeEvent<HTMLInputElement>);
   };
