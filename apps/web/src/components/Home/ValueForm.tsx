@@ -33,7 +33,7 @@ const ActionChipsField = ({ label, value, chips, onChange, chipsOnChange }: Acti
       value={value}
       onChange={onChange}
     />
-    <FormField value={chips} variant="chips" onChange={chipsOnChange} />
+    <FormField label="" value={chips} variant="chips" onChange={chipsOnChange} />
   </div>
 );
 
