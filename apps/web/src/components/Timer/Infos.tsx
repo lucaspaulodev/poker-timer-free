@@ -1,5 +1,5 @@
 import { useAtomValue } from "jotai";
-import { blindsReadOnlyAtom, levelAtom } from "../../lib/atoms";
+import { blindsReadOnlyAtom, counterOfAddon, counterOfBuyIn, counterOfChipTime, counterOfDoubleBuyIn, counterOfDoubleRebuy, counterOfRebuy, currentChipCountReadOnlyAtom, levelAtom, playersInReadOnlyAtom, totalPlayersCounter } from "../../lib/atoms";
 import ContentCard from "@poker-time/ui/contentCard";
 
 interface Props {
@@ -32,6 +32,18 @@ const CardText = ({ children, size }: Props) => {
 const Infos = () => {
   const level = useAtomValue(levelAtom);
   const blinds = useAtomValue(blindsReadOnlyAtom);
+
+  const chipCount = useAtomValue(currentChipCountReadOnlyAtom)
+
+  const buyInCount = useAtomValue(counterOfBuyIn)
+  const rebuyCount = useAtomValue(counterOfRebuy)
+  const doubleBuyInCount = useAtomValue(counterOfDoubleBuyIn)
+  const doubleRebuyCount = useAtomValue(counterOfDoubleRebuy)
+  const addOnCount = useAtomValue(counterOfAddon)
+  const chipTimeCount = useAtomValue(counterOfChipTime)
+
+  const totalPlayers = useAtomValue(totalPlayersCounter)
+  const playersIn = useAtomValue(playersInReadOnlyAtom)
 
   const currentBlinds = blinds[level];
   const nextBlinds = blinds[level + 1];
@@ -67,51 +79,51 @@ const Infos = () => {
             <CardTitle size="small">Players</CardTitle>
             <hr className="w-full" />
             <div className="align-center flex justify-center gap-4">
-              <CardText size="small">9</CardText>
+              <CardText size="small">{playersIn}</CardText>
               <hr className="h-full w-px bg-white" />
-              <CardText size="small">40</CardText>
+              <CardText size="small">{totalPlayers}</CardText>
             </div>
           </ContentCard>
           <ContentCard>
             <CardTitle size="small">Chip Count</CardTitle>
             <hr className="w-full" />
-            <CardText size="small">200k</CardText>
+            <CardText size="small">{chipCount}K</CardText>
           </ContentCard>
           <ContentCard>
             <CardTitle size="small">Buy-ins</CardTitle>
             <hr className="w-full" />
-            <CardText size="small">37</CardText>
+            <CardText size="small">{buyInCount}</CardText>
           </ContentCard>
           <ContentCard>
             <CardTitle size="small">
               Buy-ins <span className="font-normal">(Double)</span>
             </CardTitle>
             <hr className="w-full" />
-            <CardText size="small">37</CardText>
+            <CardText size="small">{doubleBuyInCount}</CardText>
           </ContentCard>
         </div>
         <div className="grid grid-cols-4 gap-2">
           <ContentCard>
             <CardTitle size="small">Rebuy</CardTitle>
             <hr className="w-full" />
-            <CardText size="small">37</CardText>
+            <CardText size="small">{rebuyCount}</CardText>
           </ContentCard>
           <ContentCard>
             <CardTitle size="small">
               Rebuy <span className="font-normal">(Double)</span>
             </CardTitle>
             <hr className="w-full" />
-            <CardText size="small">37</CardText>
+            <CardText size="small">{doubleRebuyCount}</CardText>
           </ContentCard>
           <ContentCard>
             <CardTitle size="small">Chip Time</CardTitle>
             <hr className="w-full" />
-            <CardText size="small">37</CardText>
+            <CardText size="small">{chipTimeCount}</CardText>
           </ContentCard>
           <ContentCard>
             <CardTitle size="small">Addon</CardTitle>
             <hr className="w-full" />
-            <CardText size="small">37</CardText>
+            <CardText size="small">{addOnCount}</CardText>
           </ContentCard>
         </div>
         <ContentCard>
